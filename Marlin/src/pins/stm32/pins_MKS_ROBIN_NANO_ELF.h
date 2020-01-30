@@ -28,7 +28,4 @@
 
 #undef PS_ON_PIN
 #define PS_ON_PIN          PB2   // PA3 PW_OFF
-
 #undef LED_PIN       //  PS_ON_PIN
-#undef LCD_RESET_PIN // FSMC_RST
-#define MKS_ROBIN_TFT35     //Uncomment when using the robin tft35 display
