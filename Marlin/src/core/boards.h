@@ -277,6 +277,7 @@
 #define BOARD_FYSETC_CHEETAH          4016  // FYSETC Cheetah
 #define BOARD_FYSETC_CHEETAH_V12      4017  // FYSETC Cheetah V1.2
 #define BOARD_LONGER3D_LK             4018  // Alfawise U20/U20+/U30 (Longer3D LK1/2) / STM32F103VET6
+#define BOARD_MKS_ROBIN_NANO_ELF      4019  // MKS Robin Nano for Creative3D Elf (STM32F103VET6)
 
 //
 // ARM Cortex-M4F
