@@ -26,6 +26,13 @@
  */
 #include "pins_MKS_ROBIN_NANO.h"
 
+#define Z_MAX_PIN         PC4
+
+#define E1_ENABLE_PIN      PA3
+#define E1_STEP_PIN        PA6
+#define E1_DIR_PIN         PA1
+
+
 #undef PS_ON_PIN
 #define PS_ON_PIN          PB2   // PA3 PW_OFF
 #undef LED_PIN       //  PS_ON_PIN
