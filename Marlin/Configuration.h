@@ -502,9 +502,14 @@
   //#define DEFAULT_Kd 440
 
   //@ SapphirePro 50W MonsterHeater (full metal heatbreak, no sock no fans @200° C)
-  #define DEFAULT_Kp 15.36
-  #define DEFAULT_Ki 1.13
-  #define DEFAULT_Kd 52.03
+  //#define DEFAULT_Kp 15.36
+  //#define DEFAULT_Ki 1.13
+  //#define DEFAULT_Kd 52.03
+
+  //Elf Stock Hotend (Silicone Sock @200° C)
+  #define DEFAULT_Kp 24.27
+  #define DEFAULT_Ki 2.06
+  #define DEFAULT_Kd 71.50
 
 #endif // PIDTEMP
 
@@ -554,9 +559,14 @@
   //#define DEFAULT_bedKd 1675.16
 
   // SapphirePro 24V Heater C5 S50
-  #define DEFAULT_bedKp 45.99
-  #define DEFAULT_bedKi 8.69
-  #define DEFAULT_bedKd 60.84
+  //#define DEFAULT_bedKp 45.99
+  //#define DEFAULT_bedKi 8.69
+  //#define DEFAULT_bedKd 60.84
+
+  //Elf Stock 24V Heater @70° C
+  #define DEFAULT_bedKp 66.13
+  #define DEFAULT_bedKi 12.69
+  #define DEFAULT_bedKd 229.71
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -1360,8 +1370,8 @@
 #define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
-  #define Z_SAFE_HOMING_X_POINT (46)    // X point for Z homing when homing all axes (G28).
-  #define Z_SAFE_HOMING_Y_POINT (100)    // Y point for Z homing when homing all axes (G28).
+  #define Z_SAFE_HOMING_X_POINT (X_MAX_POS)    // X point for Z homing when homing all axes (G28).
+  #define Z_SAFE_HOMING_Y_POINT (Y_MAX_POS)    // Y point for Z homing when homing all axes (G28).
 #endif
 
 // Homing speeds (mm/m)
@@ -1748,7 +1758,7 @@
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
 //@
-#define INDIVIDUAL_AXIS_HOMING_MENU
+//#define INDIVIDUAL_AXIS_HOMING_MENU
 
 //
 // SPEAKER/BUZZER
