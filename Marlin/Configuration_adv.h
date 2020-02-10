@@ -503,9 +503,6 @@
   //#define Y_DUAL_ENDSTOPS
   #if ENABLED(Y_DUAL_ENDSTOPS)
     #define Y2_USE_ENDSTOP _YMAX_
-<<<<<<< HEAD
-    #define Y2_ENDSTOP_ADJUSTMENT  0
-=======
     #define Y_DUAL_ENDSTOPS_ADJUSTMENT  0
   #endif
 #endif
@@ -516,7 +513,6 @@
   #if ENABLED(Z_DUAL_ENDSTOPS)
     #define Z2_USE_ENDSTOP _ZMAX_
     #define Z_DUAL_ENDSTOPS_ADJUSTMENT  0
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
   #endif
 #endif
 
@@ -1452,16 +1448,9 @@
   //#define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
   //@
   #define BABYSTEP_INVERT_Z false           // Change if Z babysteps should go the other way
-<<<<<<< HEAD
-  #define BABYSTEP_MULTIPLICATOR_Z  1       // Babysteps are very small. Increase for faster motion.
-  #define BABYSTEP_MULTIPLICATOR_XY 1
-
-  //#define DOUBLECLICK_FOR_Z_BABYSTEPPING  // Double-click on the Status Screen for Z Babystepping.
-=======
   #define BABYSTEP_MULTIPLICATOR_Z  10       // Babysteps are very small. Increase for faster motion.
   #define BABYSTEP_MULTIPLICATOR_XY 10
   #define DOUBLECLICK_FOR_Z_BABYSTEPPING  // Double-click on the Status Screen for Z Babystepping.
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
   #if ENABLED(DOUBLECLICK_FOR_Z_BABYSTEPPING)
     #define DOUBLECLICK_MAX_INTERVAL 1250   // Maximum interval between clicks, in milliseconds.
                                             // Note: Extra time may be added to mitigate controller latency.
@@ -1893,16 +1882,9 @@
   #define ADVANCED_PAUSE_FANS_PAUSE               // Turn off print-cooling fans while the machine is paused.
 
                                                   // Filament Unload does a Retract, Delay, and Purge first:
-<<<<<<< HEAD
-  #define FILAMENT_UNLOAD_PURGE_RETRACT       13  // (mm) Unload initial retract length.
-  #define FILAMENT_UNLOAD_PURGE_DELAY       5000  // (ms) Delay for the filament to cool after retract.
-  #define FILAMENT_UNLOAD_PURGE_LENGTH         8  // (mm) An unretract is done, then this length is purged.
-  #define FILAMENT_UNLOAD_PURGE_FEEDRATE      25  // (mm/s) feedrate to purge before unload
-=======
   #define FILAMENT_UNLOAD_RETRACT_LENGTH      10  // (mm) Unload initial retract length.
   #define FILAMENT_UNLOAD_DELAY              750  // (ms) Delay for the filament to cool after retract.
   #define FILAMENT_UNLOAD_PURGE_LENGTH         3  // (mm) An unretract is done, then this length is purged.
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
 
   #define PAUSE_PARK_NOZZLE_TIMEOUT           45  // (seconds) Time limit before the nozzle is turned off for safety.
   #define FILAMENT_CHANGE_ALERT_BEEPS         10  // Number of alert beeps to play when a response is needed.

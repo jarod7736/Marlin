@@ -13,10 +13,6 @@ for i, flag in enumerate(env["LINKFLAGS"]):
         env["LINKFLAGS"][i] = "-Wl,-T" + custom_ld_script
     elif flag == "-T":
         env["LINKFLAGS"][i + 1] = custom_ld_script
-<<<<<<< HEAD
-
-=======
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
 
 # Encrypt ${PROGNAME}.bin and save it as 'Robin_nano.bin'
 def encrypt(source, target, env):

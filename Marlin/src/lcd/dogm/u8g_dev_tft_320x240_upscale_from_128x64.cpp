@@ -127,8 +127,6 @@
 #define X_HI (X_LO + 3 * WIDTH  - 1)
 #define Y_HI (Y_LO + 3 * HEIGHT - 1)
 
-<<<<<<< HEAD
-=======
 #define LCD_COLUMN      0x2A   /* Colomn address register */
 #define LCD_ROW         0x2B   /* Row address register */
 #define LCD_WRITE_RAM   0x2C
@@ -164,7 +162,6 @@ x ||^24    ^136   ^248   ^360   ||/___ y = 301 px
 
 
 
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
 // see https://ee-programming-notepad.blogspot.com/2016/10/16-bit-color-generator-picker.html
 
 #define COLOR_BLACK       0x0000  // #000000
@@ -224,18 +221,11 @@ static uint32_t lcd_id = 0;
 #define ILI9328_VASET       0x21   /* Vertical GRAM address register (0-511)*/
 #define ILI9328_WRITE_RAM   0x22   /* Write data to GRAM */
 
-<<<<<<< HEAD
-#define ILI9328_HASTART     0x50   /* Horizontal address start position (0-255) */
-#define ILI9328_HAEND       0x51   /* Horizontal address end position (0-255) */
-#define ILI9328_VASTART     0x52   /* Vertical address start position (0-511) */
-#define ILI9328_VAEND       0x53   /* Vertical address end position (0-511) */
-=======
 //@ ToDo
 // check positions for new offsets
 // --> done. see marlin/src/feature/touch/xpt2046.cpp
 
 #if ENABLED(TOUCH_BUTTONS)
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
 
 
 static void setWindow_ili9328(u8g_t *u8g, u8g_dev_t *dev, uint16_t Xmin, uint16_t Ymin, uint16_t Xmax, uint16_t Ymax) {
@@ -277,48 +267,6 @@ static void setWindow_ili9328(u8g_t *u8g, u8g_dev_t *dev, uint16_t Xmin, uint16_
   #endif
 }
 
-<<<<<<< HEAD
-static void setWindow_st7789v(u8g_t *u8g, u8g_dev_t *dev, uint16_t Xmin, uint16_t Ymin, uint16_t Xmax, uint16_t Ymax) {
-  #ifdef LCD_USE_DMA_FSMC
-    LCD_IO_WriteReg(ST7789V_CASET);
-    LCD_IO_WriteData((Xmin >> 8) & 0xFF);
-    LCD_IO_WriteData(Xmin & 0xFF);
-    LCD_IO_WriteData((Xmax >> 8) & 0xFF);
-    LCD_IO_WriteData(Xmax & 0xFF);
-
-    LCD_IO_WriteReg(ST7789V_RASET);
-    LCD_IO_WriteData((Ymin >> 8) & 0xFF);
-    LCD_IO_WriteData(Ymin & 0xFF);
-    LCD_IO_WriteData((Ymax >> 8) & 0xFF);
-    LCD_IO_WriteData(Ymax & 0xFF);
-
-    LCD_IO_WriteReg(ST7789V_WRITE_RAM);
-  #else
-    u8g_SetAddress(u8g, dev, 0); u8g_WriteByte(u8g, dev, ST7789V_CASET); u8g_SetAddress(u8g, dev, 1);
-    u8g_WriteByte(u8g, dev, (Xmin >> 8) & 0xFF);
-    u8g_WriteByte(u8g, dev, Xmin & 0xFF);
-    u8g_WriteByte(u8g, dev, (Xmax >> 8) & 0xFF);
-    u8g_WriteByte(u8g, dev, Xmax & 0xFF);
-
-    u8g_SetAddress(u8g, dev, 0); u8g_WriteByte(u8g, dev, ST7789V_RASET); u8g_SetAddress(u8g, dev, 1);
-    u8g_WriteByte(u8g, dev, (Ymin >> 8) & 0xFF);
-    u8g_WriteByte(u8g, dev, Ymin & 0xFF);
-    u8g_WriteByte(u8g, dev, (Ymax >> 8) & 0xFF);
-    u8g_WriteByte(u8g, dev, Ymax & 0xFF);
-
-    u8g_SetAddress(u8g, dev, 0); u8g_WriteByte(u8g, dev, ST7789V_WRITE_RAM); u8g_SetAddress(u8g, dev, 1);
-  #endif
-}
-
-static void setWindow_none(u8g_t *u8g, u8g_dev_t *dev, uint16_t Xmin, uint16_t Ymin, uint16_t Xmax, uint16_t Ymax) {}
-void (*setWindow)(u8g_t *u8g, u8g_dev_t *dev, uint16_t Xmin, uint16_t Ymin, uint16_t Xmax, uint16_t Ymax) = setWindow_none;
-
-
-#define ESC_REG(x)      0xFFFF, 0x00FF & (uint16_t)x
-#define ESC_DELAY(x)    0xFFFF, 0x8000 | (x & 0x7FFF)
-#define ESC_END         0xFFFF, 0x7FFF
-#define ESC_FFFF        0xFFFF, 0xFFFF
-=======
   static const uint8_t buttonD_sequence[] = {
     U8G_ESC_ADR(0), LCD_COLUMN, U8G_ESC_ADR(1), U8G_ESC_DATA(BUTTOND_X_LO), U8G_ESC_DATA(BUTTOND_X_HI),
     U8G_ESC_ADR(0), LCD_ROW,    U8G_ESC_ADR(1), U8G_ESC_DATA(BUTTON_Y_LO), U8G_ESC_DATA(BUTTON_Y_HI),
@@ -346,7 +294,6 @@ void (*setWindow)(u8g_t *u8g, u8g_dev_t *dev, uint16_t Xmin, uint16_t Ymin, uint
     U8G_ESC_ADR(0), LCD_WRITE_RAM, U8G_ESC_ADR(1),
     U8G_ESC_END
   };
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
 
 #ifdef LCD_USE_DMA_FSMC
   void writeEscSequence(const uint16_t *sequence) {
@@ -786,12 +733,8 @@ uint8_t u8g_dev_tft_320x240_upscale_from_128x64_fn(u8g_t *u8g, u8g_dev_t *dev, u
       // Clear Screen
       setWindow(u8g, dev, 0, 0, LCD_FULL_PIXEL_WIDTH - 1, LCD_FULL_PIXEL_HEIGHT - 1);
       #ifdef LCD_USE_DMA_FSMC
-<<<<<<< HEAD
-        LCD_IO_WriteMultiple(TFT_MARLINBG_COLOR, LCD_FULL_PIXEL_WIDTH * LCD_FULL_PIXEL_HEIGHT);
-=======
         //LCD_IO_WriteMultiple(TFT_MARLINBG_COLOR, (320*240)); //@ why hard coded resolution
         LCD_IO_WriteMultiple(TFT_MARLINBG_COLOR, (480*320));
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
       #else
         memset2(buffer, TFT_MARLINBG_COLOR, 160);
         for (uint16_t i = 0; i < 960; i++)
@@ -801,18 +744,6 @@ uint8_t u8g_dev_tft_320x240_upscale_from_128x64_fn(u8g_t *u8g, u8g_dev_t *dev, u
       // bottom line and buttons
       #if ENABLED(TOUCH_BUTTONS)
 
-<<<<<<< HEAD
-        setWindow(u8g, dev, 10, 170, 309, 171);
-        #ifdef LCD_USE_DMA_FSMC
-          LCD_IO_WriteMultiple(TFT_DISABLED_COLOR, 600);
-        #else
-          memset2(buffer, TFT_DISABLED_COLOR, 150);
-          for (uint8_t i = 8; i--;)
-            u8g_WriteSequence(u8g, dev, 150, (uint8_t *)buffer);
-        #endif
-
-        setWindow(u8g, dev, 14, 185,  77, 224);
-=======
         // why the linewrites
 
         // #ifdef LCD_USE_DMA_FSMC
@@ -832,7 +763,6 @@ uint8_t u8g_dev_tft_320x240_upscale_from_128x64_fn(u8g_t *u8g, u8g_dev_t *dev, u
 
         //@ check button sizes
         u8g_WriteEscSeqP(u8g, dev, buttonD_sequence);
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
         drawImage(buttonD, u8g, dev, 32, 20, TFT_BTCANCEL_COLOR);
 
         setWindow(u8g, dev, 90, 185, 153, 224);
