@@ -334,11 +334,7 @@
 //#define PSU_NAME "Power Supply"
 
 #if ENABLED(PSU_CONTROL)
-<<<<<<< HEAD
-  #define PSU_ACTIVE_HIGH false     // Set 'false' for ATX, 'true' for X-Box
-=======
   #define PSU_ACTIVE_HIGH true // Set 'false' for ATX (1), 'true' for X-Box (2)
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
 
   //#define PSU_DEFAULT_OFF         // Keep power off until enabled directly with M80
   //#define PSU_POWERUP_DELAY 100   // (ms) Delay for the PSU to warm up to full power
@@ -427,16 +423,9 @@
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
 #define TEMP_SENSOR_5 0
-<<<<<<< HEAD
-#define TEMP_SENSOR_6 0
-#define TEMP_SENSOR_7 0
-#define TEMP_SENSOR_BED 0
-#define TEMP_SENSOR_PROBE 0
-=======
 //@
 #define TEMP_SENSOR_BED 1
 // #define TEMP_SENSOR_CHAMBER 1
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
 #define TEMP_SENSOR_CHAMBER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -477,14 +466,8 @@
 #define HEATER_3_MAXTEMP 275
 #define HEATER_4_MAXTEMP 275
 #define HEATER_5_MAXTEMP 275
-<<<<<<< HEAD
-#define HEATER_6_MAXTEMP 275
-#define HEATER_7_MAXTEMP 275
-#define BED_MAXTEMP      150
-=======
 //@
 #define BED_MAXTEMP      125
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
 
 //===========================================================================
 //============================= PID Settings ================================
@@ -726,12 +709,7 @@
 //#define Y2_DRIVER_TYPE A4988
 #define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
-<<<<<<< HEAD
-//#define Z4_DRIVER_TYPE A4988
-//#define E0_DRIVER_TYPE A4988
-=======
 #define E0_DRIVER_TYPE A4988
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -1007,14 +985,8 @@
  */
 #define NOZZLE_TO_PROBE_OFFSET { 14, -40, 0 }
 
-<<<<<<< HEAD
-// Most probes should stay away from the edges of the bed, but
-// with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define MIN_PROBE_EDGE 10
-=======
 // Certain types of probes need to stay away from edges
-#define MIN_PROBE_EDGE 5
->>>>>>> cab3c81782e630a6e9ed92bfd13550b29dd09475
+#define MIN_PROBE_EDGE 10 
 
 // X and Y axis travel speed (mm/m) between probes
 //@
