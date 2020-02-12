@@ -39,6 +39,7 @@
   #define E1_ENABLE_PIN PA3
 #endif
 
-#undef PS_ON_PIN
-#define PS_ON_PIN          PB2   // PA3 PW_OFF
+//#undef PS_ON_PIN
+//#define PS_ON_PIN          PB2   // PA3 PW_OFF
 #undef LED_PIN       //  PS_ON_PIN
+#define SUICIDE_PIN PB2
