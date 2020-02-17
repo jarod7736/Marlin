@@ -507,9 +507,9 @@
   //#define DEFAULT_Kd 52.03
 
   //Elf Stock Hotend (Silicone Sock @200° C)
-  #define DEFAULT_Kp 19.10
-  #define DEFAULT_Ki 1.62
-  #define DEFAULT_Kd 56.15
+  #define DEFAULT_Kp 24.27
+  #define DEFAULT_Ki 2.06
+  #define DEFAULT_Kd 71.50
 
 #endif // PIDTEMP
 
