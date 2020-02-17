@@ -43,3 +43,5 @@
 //#define PS_ON_PIN          PB2   // PA3 PW_OFF
 #undef LED_PIN       //  PS_ON_PIN
 #define SUICIDE_PIN PB2
+#define KILL_PIN PA2
+#define KILL_PIN_INVERTING true
