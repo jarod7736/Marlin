@@ -334,7 +334,7 @@
 //#define PSU_NAME "Power Supply"
 
 #if ENABLED(PSU_CONTROL)
-  #define PSU_ACTIVE_HIGH true // Set 'false' for ATX (1), 'true' for X-Box (2)
+  #define PSU_ACTIVE_HIGH false // Set 'false' for ATX (1), 'true' for X-Box (2)
 
   //#define PS_DEFAULT_OFF      // Keep power off until enabled directly with M80
 
@@ -507,9 +507,9 @@
   //#define DEFAULT_Kd 52.03
 
   //Elf Stock Hotend (Silicone Sock @200° C)
-  #define DEFAULT_Kp 24.27
-  #define DEFAULT_Ki 2.06
-  #define DEFAULT_Kd 71.50
+  #define DEFAULT_Kp 26.07
+  #define DEFAULT_Ki 2.23
+  #define DEFAULT_Kd 76.29
 
 #endif // PIDTEMP
 
@@ -964,7 +964,7 @@
 #define NOZZLE_TO_PROBE_OFFSET { 14, -40, 0 }
 
 // Certain types of probes need to stay away from edges
-#define MIN_PROBE_EDGE 5
+#define MIN_PROBE_EDGE 15 
 
 // X and Y axis travel speed (mm/m) between probes
 //@
@@ -1069,7 +1069,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR true
+#define INVERT_E0_DIR false
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -1291,7 +1291,7 @@
 
   #define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  #define MESH_INSET 20              // Set Mesh bounds as an inset region of the bed
+  #define MESH_INSET 36              // Set Mesh bounds as an inset region of the bed
   #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
@@ -1307,7 +1307,7 @@
   //=================================== Mesh ==================================
   //===========================================================================
 
-  #define MESH_INSET 20          // Set Mesh bounds as an inset region of the bed
+  #define MESH_INSET 36          // Set Mesh bounds as an inset region of the bed
   #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
