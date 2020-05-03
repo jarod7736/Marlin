@@ -413,7 +413,7 @@
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
 //@ need to check what thermistor it actually uses
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 5
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -507,9 +507,14 @@
   //#define DEFAULT_Kd 52.03
 
   //Elf Stock Hotend (Silicone Sock @200° C)
-  #define DEFAULT_Kp 26.07
-  #define DEFAULT_Ki 2.23
-  #define DEFAULT_Kd 76.29
+  //#define DEFAULT_Kp 26.07
+  //#define DEFAULT_Ki 2.23
+  //#define DEFAULT_Kd 76.29
+
+  //ELF E3D (Si Sock @240 C)
+  #define DEFAULT_Kp 24.01
+  #define DEFAULT_Ki 2.01
+  #define DEFAULT_Kd 71.70
 
 #endif // PIDTEMP
 
@@ -753,7 +758,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
 //@ settings from 1.0.3 stock firmware
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 406.09 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 425.09 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1100,8 +1105,8 @@
 //@
 
 // The size of the print bed
-#define X_BED_SIZE 305
-#define Y_BED_SIZE 305
+#define X_BED_SIZE 300
+#define Y_BED_SIZE 278
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1109,7 +1114,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 340
+#define Z_MAX_POS 335
 
 /**
  * Software Endstops
@@ -1758,7 +1763,7 @@
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
 //@
-//#define INDIVIDUAL_AXIS_HOMING_MENU
+#define INDIVIDUAL_AXIS_HOMING_MENU
 
 //
 // SPEAKER/BUZZER
