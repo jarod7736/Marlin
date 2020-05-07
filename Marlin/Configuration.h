@@ -419,7 +419,7 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 5
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -512,9 +512,9 @@
   //#define DEFAULT_Kd 440
 
   //@ ELF stock
-  #define DEFAULT_Kp 15.56
-  #define DEFAULT_Ki 1.25
-  #define DEFAULT_Kd 48.55
+  #define DEFAULT_Kp 24.01 
+  #define DEFAULT_Ki 2.01
+  #define DEFAULT_Kd 71.70
 
 #endif // PIDTEMP
 
@@ -564,9 +564,13 @@
   //#define DEFAULT_bedKd 1675.16
 
   // ELF stock
-  #define DEFAULT_bedKp 200.64
-  #define DEFAULT_bedKi 36.63
-  #define DEFAULT_bedKd 274.73
+  //#define DEFAULT_bedKp 200.64
+  //#define DEFAULT_bedKi 36.63
+  //#define DEFAULT_bedKd 274.73
+
+  #define DEFAULT_bedKp 66.13
+  #define DEFAULT_bedKi 12.69
+  #define DEFAULT_bedKd 229.71
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -671,7 +675,7 @@
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
 #define X_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
@@ -695,13 +699,13 @@
  */
 #define X_DRIVER_TYPE  TMC2208_STANDALONE
 #define Y_DRIVER_TYPE  TMC2208_STANDALONE
-#define Z_DRIVER_TYPE  TMC2208_STANDALONE
+#define Z_DRIVER_TYPE  A4988 // TMC2208_STANDALONE
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
-#define Z2_DRIVER_TYPE TMC2208_STANDALONE
+#define Z2_DRIVER_TYPE A4988 // TMC2208_STANDALONE
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
-#define E0_DRIVER_TYPE TMC2209_STANDALONE
+#define E0_DRIVER_TYPE A4988 // TMC2209_STANDALONE
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -753,7 +757,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 392 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 424.5 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1262,12 +1266,12 @@
   /**
    * Enable the G26 Mesh Validation Pattern tool.
    */
-  //#define G26_MESH_VALIDATION
+  #define G26_MESH_VALIDATION
   #if ENABLED(G26_MESH_VALIDATION)
     #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diameter of primary nozzle.
     #define MESH_TEST_LAYER_HEIGHT   0.2  // (mm) Default layer height for the G26 Mesh Validation Tool.
-    #define MESH_TEST_HOTEND_TEMP  205    // (°C) Default nozzle temperature for the G26 Mesh Validation Tool.
-    #define MESH_TEST_BED_TEMP      60    // (°C) Default bed temperature for the G26 Mesh Validation Tool.
+    #define MESH_TEST_HOTEND_TEMP  210    // (°C) Default nozzle temperature for the G26 Mesh Validation Tool.
+    #define MESH_TEST_BED_TEMP      70    // (°C) Default bed temperature for the G26 Mesh Validation Tool.
     #define G26_XY_FEEDRATE         20    // (mm/s) Feedrate for XY Moves for the G26 Mesh Validation Tool.
     #define G26_RETRACT_MULTIPLIER   1.0  // G26 Q (retraction) used by default between mesh test elements.
   #endif
@@ -1309,7 +1313,7 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  #define MESH_INSET 1              // Set Mesh bounds as an inset region of the bed
+  #define MESH_INSET 36              // Set Mesh bounds as an inset region of the bed
   #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
@@ -1472,7 +1476,7 @@
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
-  //#define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
+  #define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
 #endif
 
 //
@@ -1499,8 +1503,8 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 180
-#define PREHEAT_1_TEMP_BED     60
+#define PREHEAT_1_TEMP_HOTEND 210
+#define PREHEAT_1_TEMP_BED     70
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "PETG"
