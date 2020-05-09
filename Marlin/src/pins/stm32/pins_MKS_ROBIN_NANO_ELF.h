@@ -38,10 +38,13 @@
 #ifndef E1_ENABLE_PIN
   #define E1_ENABLE_PIN PA3
 #endif
+#ifndef BLTOUCH_PIN
+  #define BLTOUCH_PIN PE6
+#endif
 
 //#undef PS_ON_PIN
 //#define PS_ON_PIN          PB2   // PA3 PW_OFF
-#undef LED_PIN       //  PS_ON_PIN
+#undef  LED_PIN       //  PS_ON_PIN
 #define SUICIDE_PIN PB2
 #define KILL_PIN PA2
 #define KILL_PIN_INVERTING true
