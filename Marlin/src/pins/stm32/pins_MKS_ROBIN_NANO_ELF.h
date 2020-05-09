@@ -45,3 +45,4 @@
 #define SUICIDE_PIN PB2
 #define KILL_PIN PA2
 #define KILL_PIN_INVERTING true
+#define SERVO0_PIN  PA8
