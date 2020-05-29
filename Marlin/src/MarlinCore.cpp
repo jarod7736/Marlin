@@ -59,6 +59,10 @@
 #include "gcode/parser.h"
 #include "gcode/queue.h"
 
+#if ENABLED(DIRECT_STEPPING)
+  #include "feature/direct_stepping.h"
+#endif
+
 #if ENABLED(TOUCH_BUTTONS)
   #include "feature/touch/xpt2046.h"
 #endif
@@ -155,6 +159,10 @@
   #include "feature/runout.h"
 #endif
 
+#if ENABLED(HOTEND_IDLE_TIMEOUT)
+  #include "feature/hotend_idle.h"
+#endif
+
 #if ENABLED(TEMP_STAT_LEDS)
   #include "feature/leds/tempstat.h"
 #endif
@@ -183,26 +191,17 @@
   #include "libs/L64XX/L64XX_Marlin.h"
 #endif
 
-const char NUL_STR[] PROGMEM = "",
-           M112_KILL_STR[] PROGMEM = "M112 Shutdown",
-           G28_STR[] PROGMEM = "G28",
-           M21_STR[] PROGMEM = "M21",
-           M23_STR[] PROGMEM = "M23 %s",
-           M24_STR[] PROGMEM = "M24",
-           SP_P_STR[] PROGMEM = " P",
-           SP_T_STR[] PROGMEM = " T",
-           SP_X_STR[] PROGMEM = " X",
-           SP_Y_STR[] PROGMEM = " Y",
-           SP_Z_STR[] PROGMEM = " Z",
-           SP_E_STR[] PROGMEM = " E",
-              X_LBL[] PROGMEM =  "X:",
-              Y_LBL[] PROGMEM =  "Y:",
-              Z_LBL[] PROGMEM =  "Z:",
-              E_LBL[] PROGMEM =  "E:",
-           SP_X_LBL[] PROGMEM = " X:",
-           SP_Y_LBL[] PROGMEM = " Y:",
-           SP_Z_LBL[] PROGMEM = " Z:",
-           SP_E_LBL[] PROGMEM = " E:";
+PGMSTR(NUL_STR, "");
+PGMSTR(M112_KILL_STR, "M112 Shutdown");
+PGMSTR(G28_STR, "G28");
+PGMSTR(M21_STR, "M21");
+PGMSTR(M23_STR, "M23 %s");
+PGMSTR(M24_STR, "M24");
+PGMSTR(SP_P_STR, " P");  PGMSTR(SP_T_STR, " T");
+PGMSTR(X_STR,     "X");  PGMSTR(Y_STR,     "Y");  PGMSTR(Z_STR,     "Z");  PGMSTR(E_STR,     "E");
+PGMSTR(X_LBL,     "X:"); PGMSTR(Y_LBL,     "Y:"); PGMSTR(Z_LBL,     "Z:"); PGMSTR(E_LBL,     "E:");
+PGMSTR(SP_X_STR, " X");  PGMSTR(SP_Y_STR, " Y");  PGMSTR(SP_Z_STR, " Z");  PGMSTR(SP_E_STR, " E");
+PGMSTR(SP_X_LBL, " X:"); PGMSTR(SP_Y_LBL, " Y:"); PGMSTR(SP_Z_LBL, " Z:"); PGMSTR(SP_E_LBL, " E:");
 
 MarlinState marlin_state = MF_INITIALIZING;
 
@@ -248,6 +247,14 @@ void setup_killpin() {
     if (!KILL_PIN_INVERTING) SET_INPUT_PULLUP(KILL_PIN);
     else SET_INPUT(KILL_PIN);
   #endif
+    
+    //#if KILL_PIN_STATE
+    
+    //  SET_INPUT_PULLDOWN(KILL_PIN);
+    
+    //#else
+    //  SET_INPUT_PULLUP(KILL_PIN);
+    //#endif
 }
 
 void setup_powerhold() {
@@ -500,6 +507,9 @@ inline void manage_inactivity(const bool ignore_stepper_queue=false) {
     if (!READ(KILL_PIN) && !KILL_PIN_INVERTING)
       killCount++;
     else if (READ(KILL_PIN) && KILL_PIN_INVERTING)
+//=======
+    //if (kill_state())
+//>>>>>>> bugfix-2.0.x
       killCount++;
     else if (killCount > 0)
       killCount--;
@@ -530,6 +540,8 @@ inline void manage_inactivity(const bool ignore_stepper_queue=false) {
   TERN_(USE_CONTROLLER_FAN, controllerFan.update()); // Check if fan should be turned on to cool stepper drivers down
 
   TERN_(AUTO_POWER_CONTROL, powerManager.check());
+
+  TERN_(HOTEND_IDLE_TIMEOUT, hotend_idle.check());
 
   #if ENABLED(EXTRUDER_RUNOUT_PREVENT)
     if (thermalManager.degHotend(active_extruder) > EXTRUDER_RUNOUT_MINTEMP
@@ -721,6 +733,9 @@ void idle(TERN_(ADVANCED_PAUSE_FEATURE, bool no_stepper_sleep/*=false*/)) {
 
   // Handle Joystick jogging
   TERN_(POLL_JOG, joystick.inject_jog_moves());
+
+  // Direct Stepping
+  TERN_(DIRECT_STEPPING, page_manager.write_responses());
 }
 
 /**
@@ -773,10 +788,10 @@ void minkill(const bool steppers_off/*=false*/) {
   #if HAS_KILL
 
     // Wait for kill to be released
-    while (!READ(KILL_PIN)) watchdog_refresh();
+    while (kill_state()) watchdog_refresh();
 
     // Wait for kill to be pressed
-    while (READ(KILL_PIN)) watchdog_refresh();
+    while (!kill_state()) watchdog_refresh();
 
     void (*resetFunc)() = 0;      // Declare resetFunc() at address 0
     resetFunc();                  // Jump to address 0
@@ -1130,6 +1145,10 @@ void setup() {
 
   #if ENABLED(MAX7219_DEBUG)
     SETUP_RUN(max7219.init());
+  #endif
+
+  #if ENABLED(DIRECT_STEPPING)
+    SETUP_RUN(page_manager.init());
   #endif
 
   marlin_state = MF_RUNNING;
