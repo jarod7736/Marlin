@@ -421,7 +421,7 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 5
+#define TEMP_SENSOR_0 1
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -510,9 +510,13 @@
   //#define DEFAULT_Kd 440
 
   //@ ELF stock
-  #define DEFAULT_Kp 24.01 
-  #define DEFAULT_Ki 2.01
-  #define DEFAULT_Kd 71.70
+  //#define DEFAULT_Kp 24.01 
+  //#define DEFAULT_Ki 2.01
+  //#define DEFAULT_Kd 71.70
+
+  #define DEFAULT_Kp 31.44
+  #define DEFAULT_Ki 2.42
+  #define DEFAULT_Kd 102.07
 
 #endif // PIDTEMP
 
@@ -566,9 +570,9 @@
   //#define DEFAULT_bedKi 36.63
   //#define DEFAULT_bedKd 274.73
 
-  #define DEFAULT_bedKp 66.13
-  #define DEFAULT_bedKi 12.69
-  #define DEFAULT_bedKd 229.71
+  #define DEFAULT_bedKp 24.98
+  #define DEFAULT_bedKi 4.05
+  #define DEFAULT_bedKd 102.82
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -988,7 +992,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { 0, -33, -1.80 }
+#define NOZZLE_TO_PROBE_OFFSET { 0, -33, -2.60 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
