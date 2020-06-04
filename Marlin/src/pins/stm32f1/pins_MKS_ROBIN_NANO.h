@@ -87,7 +87,6 @@
 #define E1_STEP_PIN                         PB5
 #define E1_DIR_PIN                          PB4
 
-
 // Software SPI pins for TMC2130 stepper drivers
 //
 #if ENABLED(TMC_USE_SW_SPI)
